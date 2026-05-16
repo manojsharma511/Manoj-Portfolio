@@ -14,9 +14,9 @@ export const NAV_LINKS: NavLink[] = [
 export const CONTACT_INFO = {
   email: "msharma27096@gmail.com",
   github: "https://github.com/manojkumarsharma511",
-  linkedin: "www.linkedin.com/in/manoj-kumar-sharma-a1ba05255",
+  linkedin: "https://www.linkedin.com/in/manoj-kumar-sharma-a1ba05255/",
   location: "Sikar, Rajasthan, India",
-  phone: "+91 XXXXXXXXXX",
+  phone: "+91 6350542691",
 }
 
 // Social Links
