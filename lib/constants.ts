@@ -14,7 +14,7 @@ export const NAV_LINKS: NavLink[] = [
 export const CONTACT_INFO = {
   email: "msharma27096@gmail.com",
   github: "https://github.com/manojkumarsharma511",
-  linkedin: "https://linkedin.com/in/manoj-kumar-sharma",
+  linkedin: "www.linkedin.com/in/manoj-kumar-sharma-a1ba05255",
   location: "Sikar, Rajasthan, India",
   phone: "+91 XXXXXXXXXX",
 }
