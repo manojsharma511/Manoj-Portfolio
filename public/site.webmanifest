@@ -1,0 +1,21 @@
+{
+  "name": "Manoj Kumar Sharma | Software Engineer Portfolio",
+  "short_name": "Manoj Sharma",
+  "description": "Enterprise Software Engineer specializing in Java Spring Boot and SAP ERP systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

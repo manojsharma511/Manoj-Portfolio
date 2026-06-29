@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Image from "next/image"
 import { motion, useInView } from "framer-motion"
 import { Code2, Cpu, Database, LayoutGrid, CheckCircle } from "lucide-react"
 import { STATS } from "@/data/portfolio"
@@ -46,7 +47,7 @@ function AnimatedCounter({ value, duration = 1.5, decimals = 0 }: { value: numbe
   return <span ref={ref}>{count.toFixed(decimals)}</span>
 }
 
-export function About() {
+export function About({ isPage = false }: { isPage?: boolean }) {
   return (
     <section id="about" className="relative w-full bg-slate-950 py-24 sm:py-32">
       <div className="section-container">
@@ -58,15 +59,21 @@ export function About() {
           viewport={{ once: true }}
           className="mb-16 space-y-4"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-            About <span className="text-gradient-accent">Me</span>
-          </h2>
+          {isPage ? (
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+              About <span className="text-gradient-accent">Me | Manoj Kumar Sharma</span>
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              About <span className="text-gradient-accent">Me</span>
+            </h2>
+          )}
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
         </motion.div>
 
         {/* Content Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Bio text */}
+          {/* Bio text & Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -25 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -74,12 +81,28 @@ export function About() {
             viewport={{ once: true }}
             className="lg:col-span-7 space-y-6 text-slate-300 leading-relaxed text-base sm:text-lg"
           >
-            <p>
-              I am a <span className="font-semibold text-white">Software Engineer</span> with hands-on experience building enterprise-grade ERP systems, retail operating platforms, HRMS solutions, and scalable web applications.
-            </p>
-            <p>
-              My expertise lies in backend design with <span className="font-semibold text-white">Java & Spring Boot</span>, creating secure, high-throughput architectures, database profiling, and seamless integrations with systems like <span className="font-semibold text-white">SAP ERP</span>. I craft software that ensures high availability, strict security roles (RBAC), and smooth deployments.
-            </p>
+            <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+              {/* Profile Image with WebP support and Alt text */}
+              <div className="w-28 h-28 relative rounded-2xl overflow-hidden border border-white/10 bg-slate-900 flex-shrink-0 shadow-lg shadow-blue-500/5 group">
+                <Image
+                  src="/images/profile.png"
+                  alt="Manoj Kumar Sharma - Software Engineer profile photo"
+                  fill
+                  sizes="112px"
+                  priority={isPage}
+                  loading={isPage ? undefined : "lazy"}
+                  className="object-cover transition-transform group-hover:scale-105"
+                />
+              </div>
+              <div className="space-y-4 flex-1">
+                <p>
+                  I am a <span className="font-semibold text-white">Software Engineer</span> with hands-on experience building enterprise-grade ERP systems, retail operating platforms, HRMS solutions, and scalable web applications.
+                </p>
+                <p>
+                  My expertise lies in backend design with <span className="font-semibold text-white">Java & Spring Boot</span>, creating secure, high-throughput architectures, database profiling, and seamless integrations with systems like <span className="font-semibold text-white">SAP ERP</span>. I craft software that ensures high availability, strict security roles (RBAC), and smooth deployments.
+                </p>
+              </div>
+            </div>
 
             {/* Specialization List */}
             <div className="space-y-4 pt-4">

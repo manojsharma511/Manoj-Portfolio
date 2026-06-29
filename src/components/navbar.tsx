@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Menu, X, FileText } from "lucide-react"
 import { useScrollActive } from "@/hooks/useScrollActive"
 import { NAV_LINKS, CONTACT_INFO } from "@/data/portfolio"
 import { cn } from "@/utils/utils"
 
 export function Navbar() {
+  const pathname = usePathname()
   const { activeSection, isScrolling } = useScrollActive()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -19,12 +21,22 @@ export function Navbar() {
     }
   }, [isOpen])
 
+  // Active state matching (Hybrid Route + Scroll Spy)
+  const getIsActive = (href: string) => {
+    if (pathname === "/") {
+      if (href === "/") return activeSection === "home"
+      return activeSection === href.replace("/", "")
+    }
+    if (href === "/") return pathname === "/"
+    return pathname === href || pathname.startsWith(href)
+  }
+
   return (
     <>
       <nav
         className={cn(
           "fixed top-0 z-50 w-full transition-all duration-300",
-          isScrolling
+          isScrolling || pathname !== "/"
             ? "glass-panel border-b border-white/5 py-3"
             : "bg-transparent py-5"
         )}
@@ -32,7 +44,7 @@ export function Navbar() {
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="flex h-14 items-center justify-between">
             {/* Logo */}
-            <Link href="#home" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group" aria-label="Manoj Kumar Sharma Homepage">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-all">
                 <span className="text-sm font-bold text-white tracking-wide">MS</span>
               </div>
@@ -54,9 +66,9 @@ export function Navbar() {
                   href={link.href}
                   className={cn(
                     "px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200",
-                    activeSection === link.href.replace("#", "")
+                    getIsActive(link.href)
                       ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                      : "text-slate-300 hover:text-white hover:bg-white/5"
+                      : "text-slate-300 hover:text-white hover:bg-white/5 border border-transparent"
                   )}
                 >
                   {link.label}
@@ -71,6 +83,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl border border-white/10 text-slate-200 hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300"
+                aria-label="Preview resume document"
               >
                 <FileText size={16} />
                 Preview CV
@@ -80,7 +93,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 rounded-xl hover:bg-white/5 text-slate-300 hover:text-white transition-colors"
+              className="lg:hidden p-2 rounded-xl hover:bg-white/5 text-slate-300 hover:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -105,9 +118,9 @@ export function Navbar() {
                     onClick={() => setIsOpen(false)}
                     className={cn(
                       "block px-4 py-3 rounded-xl font-medium text-base transition-all duration-200",
-                      activeSection === link.href.replace("#", "")
+                      getIsActive(link.href)
                         ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                        : "text-slate-300 hover:text-white hover:bg-white/5"
+                        : "text-slate-300 hover:text-white hover:bg-white/5 border border-transparent"
                     )}
                   >
                     {link.label}
@@ -121,7 +134,8 @@ export function Navbar() {
                   href={CONTACT_INFO.resumePreview}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl border border-white/10 text-center text-slate-200 font-medium hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl border border-white/10 text-center text-slate-200 font-medium hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300 min-h-[48px]"
+                  aria-label="Preview resume document mobile"
                 >
                   <FileText size={18} />
                   Preview CV

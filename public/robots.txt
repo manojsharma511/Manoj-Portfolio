@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://manojkumarsharma.dev/sitemap.xml
+Sitemap: https://manojkumarsharma.vercel.app/sitemap.xml

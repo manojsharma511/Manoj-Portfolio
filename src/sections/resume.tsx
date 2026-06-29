@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Download, FileText, FileSpreadsheet } from "lucide-react"
 import { CONTACT_INFO } from "@/data/portfolio"
 
-export function ResumeSection() {
+export function ResumeSection({ isPage = false }: { isPage?: boolean }) {
   return (
     <section id="resume" className="relative w-full bg-slate-950 py-24 sm:py-32 border-t border-white/5">
       {/* Background visual element */}
@@ -22,9 +22,15 @@ export function ResumeSection() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              Curriculum <span className="text-gradient-primary">Vitae</span>
-            </h2>
+            {isPage ? (
+              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+                Curriculum <span className="text-gradient-primary">Vitae | Manoj Kumar Sharma</span>
+              </h1>
+            ) : (
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                Curriculum <span className="text-gradient-primary">Vitae</span>
+              </h2>
+            )}
             <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mx-auto" />
             <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
               Review my technical expertise, project histories, and professional capabilities in detailed document format.
@@ -59,7 +65,7 @@ export function ResumeSection() {
                 href={CONTACT_INFO.resumePreview}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full md:w-56 px-6 py-3 rounded-xl border border-white/10 hover:border-blue-500/50 bg-white/5 hover:bg-blue-500/5 text-slate-200 hover:text-white font-semibold text-sm inline-flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] shadow-lg shadow-black/20"
+                className="w-full md:w-56 px-6 py-3 rounded-xl border border-white/10 hover:border-blue-500/50 bg-white/5 hover:bg-blue-500/5 text-slate-200 hover:text-white font-semibold text-sm inline-flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] shadow-lg shadow-black/20 min-h-[48px]"
                 aria-label="Preview resume in a new tab"
               >
                 <FileText size={16} />
@@ -70,7 +76,7 @@ export function ResumeSection() {
               <a
                 href={CONTACT_INFO.resumeDownload}
                 download
-                className="w-full md:w-56 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm inline-flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-600/25 hover:shadow-blue-600/35"
+                className="w-full md:w-56 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm inline-flex items-center justify-center gap-2.5 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-600/25 hover:shadow-blue-600/35 min-h-[48px]"
                 aria-label="Download resume file directly"
               >
                 <Download size={16} />

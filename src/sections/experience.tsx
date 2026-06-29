@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { EXPERIENCES } from "@/data/portfolio"
 import { Briefcase, Calendar, Check } from "lucide-react"
 
-export function Experience() {
+export function Experience({ isPage = false }: { isPage?: boolean }) {
   return (
     <section id="experience" className="relative w-full bg-slate-950 py-24 sm:py-32 border-t border-white/5">
       {/* Background decoration */}
@@ -21,9 +21,15 @@ export function Experience() {
           viewport={{ once: true }}
           className="mb-16 space-y-4"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-            Professional <span className="text-gradient-primary">Experience</span>
-          </h2>
+          {isPage ? (
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+              Professional <span className="text-gradient-primary">Experience | Manoj Kumar Sharma</span>
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Professional <span className="text-gradient-primary">Experience</span>
+            </h2>
+          )}
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
         </motion.div>
 

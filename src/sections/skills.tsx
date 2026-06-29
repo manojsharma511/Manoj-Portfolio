@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { SKILLS } from "@/data/portfolio"
 import { ShieldCheck } from "lucide-react"
 
-export function Skills() {
+export function Skills({ isPage = false }: { isPage?: boolean }) {
   return (
     <section id="skills" className="relative w-full bg-slate-950 py-24 sm:py-32 border-t border-white/5">
       <div className="section-container">
@@ -16,9 +16,15 @@ export function Skills() {
           viewport={{ once: true }}
           className="mb-16 space-y-4"
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-            Skills & <span className="text-gradient-accent">Technologies</span>
-          </h2>
+          {isPage ? (
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+              Skills & <span className="text-gradient-accent">Technologies | Manoj Kumar Sharma</span>
+            </h1>
+          ) : (
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Skills & <span className="text-gradient-accent">Technologies</span>
+            </h2>
+          )}
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
           <p className="text-slate-400 text-sm sm:text-base max-w-xl">
             A comprehensive overview of enterprise backend tools, frontend architectures, and cloud DevOps systems.
