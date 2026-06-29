@@ -27,6 +27,7 @@ export function Experience() {
           <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full" />
         </motion.div>
 
+
         {/* Timeline List */}
         <div className="relative border-l-2 border-white/5 ml-4 sm:ml-6 space-y-12">
           {EXPERIENCES.map((exp, index) => (
