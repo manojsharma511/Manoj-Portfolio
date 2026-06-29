@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { Onest } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 
 const onest = Onest({
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${onest.variable} font-sans antialiased overflow-x-hidden bg-background text-foreground`}>
         {children}
+        <Analytics />
       </body>
     </html>
   )
